@@ -1,0 +1,3 @@
+-Zamiast funkcji do rozruchu można wykorzystać klasę
+PEP do wersji oryginalnej: http://legacy.python.org/dev/peps/pep-0333/
+PEP do wersji 1.0.1(wsparcie dla Pythona 3) http://legacy.python.org/dev/peps/pep-3333/
