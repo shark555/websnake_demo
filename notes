@@ -1,10 +1,14 @@
--Zamiast funkcji do rozruchu można wykorzystać klasę
-PEP do wersji oryginalnej: http://legacy.python.org/dev/peps/pep-0333/
-PEP do wersji 1.0.1(wsparcie dla Pythona 3) http://legacy.python.org/dev/peps/pep-3333/
-
--Przykładowa konfiguracja VHosta
+-Zamiast funkcji do rozruchu można wykorzystać klasę PEP do wersji oryginalnej: http://legacy.python.org/dev/peps/pep-0333/ PEP do wersji 1.0.1(wsparcie dla Pythona 3) http://legacy.python.org/dev/peps/pep-3333/ -Przykładowa konfiguracja VHosta
 <VirtualHost *:80>
 ServerName modwsgi.lh
 DocumentRoot /srv/http/Prywatne/modwsgi
 WSGIScriptAlias / /srv/http/Prywatne/modwsgi/wsgi_app.py
 </VirtualHost>
+
+Nic nie daje:
+-Daemon mode - konieczne by resetował się kod
+WSGIDaemonProcess modwsgi.lh python-path=/srv/http/Prywatne/modwsgi:/usr/lib/python3.4/site-packages/
+WSGIProcessGroup modwsgi.lh
+
+W Apache'u(działa tylko w trybie Embeded!!!):
+MaxRequestsPerChild 1
