@@ -12,3 +12,5 @@ WSGIProcessGroup modwsgi.lh
 
 W Apache'u(działa tylko w trybie Embeded!!!):
 MaxRequestsPerChild 1
+
+Websnake

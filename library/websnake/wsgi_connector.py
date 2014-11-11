@@ -20,6 +20,17 @@ class WsgiConnector:
     def __iter__(self):
         http_response = HttpResponse(self._environ)
         http_request = HttpRequest(self._environ)
+       
+        #Tutaj wchodzi dispatcher budowany z http_request 
+        #dispatcher = Dispatcher(http_request)
+        #dispatcher.dispatch()
+        #controller = dispatcher.get_controller()
+        #action = dispatcher.get_action()
+        #
+        #controller.init(http_request, http_response) ##przydałby się też dostęp do sesji
+        #controller.action()
+        #http_response = controller.get_http_response()
+
         output = http_response.get_output()
         user_headers = http_response.get_response_headers()
         user_response_code = http_response.get_response_code()
