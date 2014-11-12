@@ -1,6 +1,7 @@
 from http_request import HttpRequest
 from http_response import HttpResponse
 
+
 class WsgiConnector:
     def __init__(self, environ, start_response):
         self._environ = environ
@@ -34,7 +35,7 @@ class WsgiConnector:
         output = http_response.get_output()
         user_headers = http_response.get_response_headers()
         user_response_code = http_response.get_response_code()
-        if(user_response_code != ''):
+        if user_response_code != '':
             self._response_code = self._http_codes[user_response_code]
         self._start(self._response_code, self._default_headers + user_headers)
         yield output.encode(self._default_encoding)

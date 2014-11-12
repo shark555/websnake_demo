@@ -1,31 +1,26 @@
 class HttpResponse:
-    ## environment - WSGI environment dictionary
-    def __init__(self, environment):
+    def __init__(self, environment: str):
         self._environment = environment
         self._response_headers = []
         self._response_code = 200
 
-    ## returns string
-    def get_output(self):
-        return 'Ala ma kota!!!!!' ##Tu powinien być jakiś dispatch i zwrócenie kodu użytkownika
+    def set_output(self, output: str):
+        pass
 
-    ## message - string
-    def set_error(self, message):
+    def get_output(self) -> str:
+        return 'Hello Web Snake!'
+
+    def set_error(self, message: str):
         self._environment['wsgi.errors'].write(message)
 
-    ## name - string
-    ## value - string
-    def set_response_header(self, name, value):
+    def set_response_header(self, name: str, value: str):
         self._response_headers = self._response_headers + [(name, value)]
 
-    ## returns list
-    def get_response_headers(self):
+    def get_response_headers(self) -> str:
         return self._response_headers
 
-    ## code - int
-    def set_response_code(self, code):
-        self._response_code = code  
+    def set_response_code(self, code: int):
+        self._response_code = code
 
-    ## returns int 
-    def get_response_code(self):
+    def get_response_code(self) -> int:
         return self._response_code

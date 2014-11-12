@@ -1,42 +1,32 @@
 class HttpRequest:
-    ## environment - WSGI environment dictionary
-    def __init__(self, environment):
+    def __init__(self, environment: dict):
         self._environment = environment
    
-    ## returns string
-    def get_request_body(self):
+    def get_request_body(self) -> str:
         return str(self._environment['wsgi.input'].read())
 
-    ## returns string
-    def get_query_string(self):
+    def get_query_string(self) -> str:
         return self._environment.get('QUERY_STRING')
    
-    ## returns string
-    def get_request_method(self):
+    def get_request_method(self) -> str:
         return self._environment.get('REQUEST_METHOD')
   
-    ## returns string
-    def get_path_info(self):
+    def get_path_info(self) -> str:
         return self._environment.get('PATH_INFO')
 
-    ## returns string
-    def get_http_host(self):
+    def get_http_host(self) -> str:
         return self._environment.get('HTTP_HOST')
 
-    ## returns string
-    def get_document_root(self):
+    def get_document_root(self) -> str:
         return self._environment.get('DOCUMENT_ROOT')
 
-    ## returns string
-    def get_remote_address(self):
+    def get_remote_address(self) -> str:
         return self._environment.get('REMOTE_ADDR')
 
-    ## returns string
-    def get_cookies_string(self):
+    def get_cookies_string(self) -> str:
         return self._environment.get('HTTP_COOKIE')
 
-    ## returns string
-    def get_http_referer(self):
+    def get_http_referer(self) -> str:
         if 'HTTP_REFERER' in self._environment:
             return self._environment.get('HTTP_REFERER')
         else:
