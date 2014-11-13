@@ -1,14 +1,15 @@
 class HttpResponse:
-    def __init__(self, environment: str):
+    def __init__(self, environment: dict):
         self._environment = environment
         self._response_headers = []
         self._response_code = 200
+        self._output = ""
 
     def set_output(self, output: str):
-        pass
+        self._output = output
 
     def get_output(self) -> str:
-        return 'Hello Web Snake!'
+        return self._output
 
     def set_error(self, message: str):
         self._environment['wsgi.errors'].write(message)
