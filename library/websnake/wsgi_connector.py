@@ -1,4 +1,5 @@
 from http_request import HttpRequest
+from http_request_parser import HttpRequestParser
 from http_response import HttpResponse
 from router import Router
 from controller_factory import ControllerFactory
@@ -26,7 +27,7 @@ class WsgiConnector:
 
         controller_name, action_name = self._get_controller_and_action_name(http_request)
 
-        controller = ControllerFactory.create(controller_name, http_request, http_response)
+        controller = ControllerFactory.create(controller_name, http_request, http_response, HttpRequestParser())
         action = controller.get_method_object(action_name)
         action(controller)
 
