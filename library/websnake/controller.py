@@ -24,3 +24,6 @@ class Controller:
 
     def get_url_params(self):
         return self.__http_request_parser.parse_path(self._http_request.get_path_info(), self.PARAM_START)
+
+    def get_post_fields(self):
+        return self.__http_request_parser.parse_request_body(self._http_request.get_request_body())

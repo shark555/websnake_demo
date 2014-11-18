@@ -1,3 +1,6 @@
+import re
+
+
 class HttpRequestParser:
     def parse_query_string(self, query_string: str) -> dict:
         fields = query_string.split('&')
@@ -23,4 +26,18 @@ class HttpRequestParser:
                 if key % 2 == 0:
                     result[name] = value
 
+        return result
+
+    def parse_request_body(self, request_body: str) -> dict:
+        request_body_lines = request_body.split('\\r\\n')
+        request_body_data = request_body_lines[1:len(request_body_lines)-2]
+        request_body_separated_data = {}
+        for key, field in enumerate(request_body_data):
+            if key % 4 == 0:
+                request_body_separated_data[field] = request_body_data[key+2]
+        result = {}
+        for key, field in request_body_separated_data.items():
+            label_expression_result = re.search('name="(.*)"', key)
+            label = label_expression_result.group(1)
+            result[label] = field
         return result
