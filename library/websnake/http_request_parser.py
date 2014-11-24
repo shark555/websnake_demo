@@ -10,7 +10,7 @@ class HttpRequestParser:
             prepared_fields = {}
         return prepared_fields
 
-    def parse_path(self, path_info: str, start: int=0) -> dict:
+    def parse_path_as_dictionary(self, path_info: str, start: int=0) -> dict:
         names = path_info.split('/')
         non_empty_names = []
         for name in names:
@@ -27,6 +27,14 @@ class HttpRequestParser:
                     result[name] = value
 
         return result
+
+    def parse_path_as_list(self, path_info: str):
+        names = path_info.split('/')
+        non_empty_names = []
+        for name in names:
+            if name:
+                non_empty_names.append(name)
+        return non_empty_names
 
     def parse_request_body(self, request_body: str) -> dict:
         request_body_lines = request_body.split('\\r\\n')

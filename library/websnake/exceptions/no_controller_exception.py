@@ -1,0 +1,2 @@
+class NoControllerException(Exception):
+    pass
