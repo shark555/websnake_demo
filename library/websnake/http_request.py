@@ -24,7 +24,11 @@ class HttpRequest:
         return self._environment.get('REMOTE_ADDR')
 
     def get_cookies_string(self) -> str:
-        return self._environment.get('HTTP_COOKIE')
+        cookie_string = self._environment.get('HTTP_COOKIE')
+        if cookie_string is not None:
+            return cookie_string
+        else:
+            return ''
 
     def get_http_referer(self) -> str:
         if 'HTTP_REFERER' in self._environment:

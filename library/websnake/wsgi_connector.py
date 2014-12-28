@@ -2,8 +2,8 @@ from http_request import HttpRequest
 from http_request_parser import HttpRequestParser
 from http_response import HttpResponse
 from http_codes import HttpCodes
-from router import Router
-from controller_factory import ControllerFactory
+from mvc.router import Router
+from mvc.controller_factory import ControllerFactory
 from exceptions.routing_exception import RoutingException
 from exceptions.no_action_exception import NoActionException
 from exceptions.no_controller_exception import NoControllerException

@@ -1,7 +1,7 @@
 from http_response import HttpResponse
 from http_request import HttpRequest
 from http_request_parser import HttpRequestParser
-from controller import Controller
+from .controller import Controller
 from exceptions.no_controller_exception import NoControllerException
 import importlib
 import re
