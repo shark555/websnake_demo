@@ -1,0 +1,2 @@
+class NoViewException(Exception):
+    pass

@@ -1,5 +1,6 @@
 from jinja2 import Template
 import os
+from exceptions.no_view_exception import NoViewException
 
 
 #TODO: Seperate from Jinja
@@ -20,11 +21,12 @@ class View:
                 view_content += line
         return view_content
 
-    #TODO: Handle lack of view file
     #TODO: Application path should be handled globally
     def _find_view_file_path(self, view_name):
         application_path = os.getcwd()
         controller_name = self._controller.__class__.__name__
         normalized_controller_name = controller_name.replace('Controller', '').lower()
         view_path = application_path + '/../views/'+normalized_controller_name+'/'+view_name+'.phtml'
+        if not os.path.isfile(view_path):
+            raise NoViewException
         return view_path

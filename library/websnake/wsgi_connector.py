@@ -4,9 +4,11 @@ from http_response import HttpResponse
 from http_codes import HttpCodes
 from mvc.router import Router
 from mvc.controller_factory import ControllerFactory
+from mvc.action_factory import ActionFactory
 from exceptions.routing_exception import RoutingException
 from exceptions.no_action_exception import NoActionException
 from exceptions.no_controller_exception import NoControllerException
+from exceptions.no_view_exception import NoViewException
 
 
 class WsgiConnector:
@@ -51,15 +53,20 @@ class WsgiConnector:
                                       http_response: HttpResponse, http_request_parser: HttpRequestParser):
         try:
             controller = ControllerFactory.create(controller_name, http_request, http_response, http_request_parser)
-            action = controller.get_action_object(action_name)
+            action = ActionFactory.create(action_name, controller)
         except (NoControllerException, NoActionException) as e:
             controller = None
             action = None
         return [controller, action]
 
     def _execute_action(self, action, controller) -> HttpResponse:
-        action(controller)
-        http_response = controller.get_http_response()
+        try:
+            action(controller)
+            http_response = controller.get_http_response()
+        except (NoViewException) as e:
+            http_response = controller.get_http_response()
+            http_response.set_output("500 Error")
+            http_response.set_response_code(500)
         return http_response
 
 

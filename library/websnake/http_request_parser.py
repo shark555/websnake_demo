@@ -28,7 +28,7 @@ class HttpRequestParser:
 
         return result
 
-    def parse_path_as_list(self, path_info: str):
+    def parse_path_as_list(self, path_info: str) -> list:
         names = path_info.split('/')
         non_empty_names = []
         for name in names:
@@ -36,6 +36,9 @@ class HttpRequestParser:
                 non_empty_names.append(name)
         return non_empty_names
 
+    #TODO: Obsłużyć również "application/x-www-form-urlencoded" oraz plik w multiparcie
+    #Content-Type:multipart/form-data; boundary=----WebKitFormBoundarygpMMpBxkBA0wUCzx
+    #Content-Type:application/x-www-form-urlencoded
     def parse_request_body(self, request_body: str) -> dict:
         request_body_lines = request_body.split('\\r\\n')
         request_body_data = request_body_lines[1:len(request_body_lines)-2]

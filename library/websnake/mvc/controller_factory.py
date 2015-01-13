@@ -6,6 +6,9 @@ from exceptions.no_controller_exception import NoControllerException
 import importlib
 import re
 
+#FIXME: Łapane są tutaj wszystkie mozliwe wyjątki i automatycznie jest robione z tego 404. To nie zawsze ma sens.
+#FIXME: Do zmiany. Należy osobno obsłużyć sytuacji braku kontrolera i np. błędu w jego kodzie itp.
+
 
 class ControllerFactory:
     @staticmethod
