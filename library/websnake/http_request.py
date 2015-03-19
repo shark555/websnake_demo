@@ -36,3 +36,6 @@ class HttpRequest:
         else:
             return ''
 
+    def get_environment(self) -> dict:
+        return self._environment
+

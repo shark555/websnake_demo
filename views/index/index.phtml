@@ -1,0 +1,9 @@
+{% if post_data %}
+    Wysłano mail na adres: {{post_data['mail']}}
+{% else %}
+    Wyślij mail!! <br/><br/>
+    <form action="" method="POST" enctype="multipart/form-data">
+        <input name="mail" type="text"><br/>
+        <input type="submit">
+    </form>
+{% endif %}
