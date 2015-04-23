@@ -1,3 +1,5 @@
+import sys
+import traceback
 from http_request import HttpRequest
 from http_request_parser import HttpRequestParser
 from http_response import HttpResponse
@@ -8,7 +10,6 @@ from mvc.action_factory import ActionFactory
 from exceptions.routing_exception import RoutingException
 from exceptions.no_action_exception import NoActionException
 from exceptions.no_controller_exception import NoControllerException
-from exceptions.no_view_exception import NoViewException
 
 
 class WsgiConnector:
@@ -63,9 +64,12 @@ class WsgiConnector:
         try:
             action(controller)
             http_response = controller.get_http_response()
-        except (NoViewException) as e:
+        except Exception as e:
+            nil, nil, exception_traceback = sys.exc_info()
             http_response = controller.get_http_response()
-            http_response.set_output("500 Error")
+            traceback_message = '<br/>'.join(traceback.format_tb(exception_traceback))
+            http_response.set_output("500 Error<br/><br/>" + e.__class__.__name__ + '<br/>' + str(e)
+                                     + '<br/><br/>' + traceback_message)
             http_response.set_response_code(500)
         return http_response
 
