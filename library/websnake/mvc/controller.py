@@ -1,4 +1,3 @@
-from abc import ABCMeta
 from mvc.view import View
 from http_response import HttpResponse
 from http_request import HttpRequest
@@ -6,7 +5,6 @@ from http_request_parser import HttpRequestParser
 
 
 class Controller:
-    __metaclass__ = ABCMeta
     _PARAM_START = 2
 
     def __init__(self, http_request: HttpRequest, http_response: HttpResponse, http_request_parser: HttpRequestParser):
