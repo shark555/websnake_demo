@@ -1,2 +1,3 @@
 # websnake_demo
 Having fun with Python3 and WSGI. Minimalistic web framework. In progress...
+Don't even think about using it for something real ;)
